@@ -46,7 +46,7 @@ public class HelloController {
     @ApiResponses(value = {
             @ApiResponse(code = 406, message = "Name parameter missing")
     })
-    public ResponseEntity<GreetingResponse> helloWorld(
+    public String helloWorld(
             @RequestParam(name = "name", required = false) final String name,
             @ApiParam(
                     allowableValues = HELLO_NAME + "," + HOLA_NAME,
@@ -63,8 +63,7 @@ public class HelloController {
             return ResponseEntity.status(406).build();
         }
 
-        return ResponseEntity.ok(getGreetingService(serviceName)
-                        .getGreeting(name));
+        return enviornmentVariableCheck;
     }
 
     @PostMapping(
