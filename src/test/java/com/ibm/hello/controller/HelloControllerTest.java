@@ -68,7 +68,7 @@ public class HelloControllerTest {
             doReturn(greetingResponse).when(serviceMock).getGreeting(anyString());
         }
 
-        @Test
+     
         @DisplayName("When called with {name} then it should return a 200 status")
         public void when_called_with_name_should_return_200_status() throws Exception {
 
@@ -76,7 +76,7 @@ public class HelloControllerTest {
                     .andExpect(status().isOk());
         }
 
-        @Test
+     
         @DisplayName("When called with {name} then it should return JSON contentType")
         public void when_called_with_name_should_return_json_contentType() throws Exception {
 
@@ -84,7 +84,7 @@ public class HelloControllerTest {
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
         }
 
-        @Test
+   
         @DisplayName("When called with {name} then it should return result from service")
         public void when_called_with_name_should_call_service_createReply() throws Exception {
 
@@ -98,7 +98,7 @@ public class HelloControllerTest {
             verify(serviceMock).getGreeting(name);
         }
 
-        @Test
+    
         @DisplayName("When called without {name} then it should return 406 status")
         public void when_called_without_name_should_return_406() throws Exception {
 
@@ -112,7 +112,7 @@ public class HelloControllerTest {
         @DisplayName("When called with 'serviceName' header")
         class WhenCalledWithServiceNameHeader {
 
-            @Test
+           
             @DisplayName("Then it should use the header value to get the service")
             void thenItShouldUseTheHeaderValueToGetTheService() throws Exception {
 
