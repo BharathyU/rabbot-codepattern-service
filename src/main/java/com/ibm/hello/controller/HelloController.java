@@ -60,7 +60,7 @@ public class HelloController {
         
 
         if (StringUtils.isEmpty(name)) {
-            return ResponseEntity.status(406).build();
+            return "NOT OK";
         }
 
         return enviornmentVariableCheck;
