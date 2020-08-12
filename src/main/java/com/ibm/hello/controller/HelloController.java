@@ -55,13 +55,15 @@ public class HelloController {
     ) {
 
         LOGGER.debug("Processing name: " + name);
+        
+          LOGGER.debug("Evnvariable: " + enviornmentVariableCheck);
+        
 
         if (StringUtils.isEmpty(name)) {
             return ResponseEntity.status(406).build();
         }
 
-        return ResponseEntity.ok(
-                getGreetingService(serviceName)
+        return ResponseEntity.ok(getGreetingService(serviceName)
                         .getGreeting(name));
     }
 
@@ -88,7 +90,7 @@ public class HelloController {
             return ResponseEntity.status(406).build();
         }
 
-        return ResponseEntity.ok(enviornmentVariableCheck + getGreetingService(serviceName).getGreeting(request.getName()));
+        return ResponseEntity.ok(getGreetingService(serviceName).getGreeting(request.getName()));
     }
 
     protected GreetingService getGreetingService(String serviceNameHeader) {
