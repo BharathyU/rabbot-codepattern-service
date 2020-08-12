@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.ibm.hello.config.ServiceConfig;
 import com.ibm.hello.model.GreetingRequest;
@@ -29,6 +30,10 @@ import com.ibm.hello.service.ServiceName;
 public class HelloController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
+    
+    @Value("${DUMMY_VARIABLE}")
+    private String enviornmentVariableCheck;
+    
     private final BeanFactory beanFactory;
     private final ServiceConfig serviceConfig;
 
@@ -83,7 +88,7 @@ public class HelloController {
             return ResponseEntity.status(406).build();
         }
 
-        return ResponseEntity.ok(getGreetingService(serviceName).getGreeting(request.getName()));
+        return ResponseEntity.ok(enviornmentVariableCheck + getGreetingService(serviceName).getGreeting(request.getName()));
     }
 
     protected GreetingService getGreetingService(String serviceNameHeader) {
