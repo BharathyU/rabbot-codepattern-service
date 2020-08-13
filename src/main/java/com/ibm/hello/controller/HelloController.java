@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.ibm.hello.config.ServiceConfig;
 import com.ibm.hello.model.GreetingRequest;
@@ -29,6 +31,10 @@ import com.ibm.hello.service.ServiceName;
 public class HelloController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
+
+    @Value("${DUMMY_VARIABLE:null}")
+    private String enviornmentVariableCheck;
+
     private final BeanFactory beanFactory;
     private final ServiceConfig serviceConfig;
 
@@ -37,11 +43,13 @@ public class HelloController {
         this.serviceConfig = serviceConfig;
     }
 
+
+    @CrossOrigin
     @GetMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 406, message = "Name parameter missing")
     })
-    public ResponseEntity<GreetingResponse> helloWorld(
+    public String helloWorld(
             @RequestParam(name = "name", required = false) final String name,
             @ApiParam(
                     allowableValues = HELLO_NAME + "," + HOLA_NAME,
@@ -52,12 +60,12 @@ public class HelloController {
         LOGGER.debug("Processing name: " + name);
 
         if (StringUtils.isEmpty(name)) {
-            return ResponseEntity.status(406).build();
+            return "NOTOK";
         }
 
-        return ResponseEntity.ok(
-                getGreetingService(serviceName)
-                        .getGreeting(name));
+        LOGGER.debug("Evnvariable: " + enviornmentVariableCheck);
+
+        return enviornmentVariableCheck;
     }
 
     @PostMapping(
