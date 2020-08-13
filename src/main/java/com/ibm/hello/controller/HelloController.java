@@ -32,7 +32,7 @@ public class HelloController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
 
-    @Value("${DUMMY_VARIABLE:null}")
+    @Value("${DUMMY_VARIABLE}")
     private String enviornmentVariableCheck;
 
     private final BeanFactory beanFactory;
@@ -43,8 +43,6 @@ public class HelloController {
         this.serviceConfig = serviceConfig;
     }
 
-
-    @CrossOrigin
     @GetMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 406, message = "Name parameter missing")
@@ -59,9 +57,13 @@ public class HelloController {
 
         LOGGER.debug("Processing name: " + name);
 
+          LOGGER.debug("Evnvariable: " + enviornmentVariableCheck);
+
+
         if (StringUtils.isEmpty(name)) {
-            return "NOTOK";
+            return "NOT OK";
         }
+
 
         LOGGER.debug("Evnvariable: " + enviornmentVariableCheck);
 
