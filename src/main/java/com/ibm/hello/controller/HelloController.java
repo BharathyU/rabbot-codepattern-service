@@ -32,7 +32,7 @@ public class HelloController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
 
-    @Value("${DUMMY_VARIABLE}")
+    @Value("${DUMMY_VARIABLE:null}")
     private String enviornmentVariableCheck;
 
     private final BeanFactory beanFactory;
@@ -43,6 +43,7 @@ public class HelloController {
         this.serviceConfig = serviceConfig;
     }
 
+    @CrossOrigin
     @GetMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 406, message = "Name parameter missing")
