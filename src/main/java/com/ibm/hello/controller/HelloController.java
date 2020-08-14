@@ -25,7 +25,9 @@ import com.ibm.hello.config.ServiceConfig;
 import com.ibm.hello.model.GreetingRequest;
 import com.ibm.hello.model.GreetingResponse;
 import com.ibm.hello.service.GreetingService;
+import com.ibm.hello.service.JobProfileService;
 import com.ibm.hello.service.ServiceName;
+import com.ibm.hello.entity.JobProfileDetails;
 
 @RestController
 public class HelloController {
@@ -37,6 +39,9 @@ public class HelloController {
 
     private final BeanFactory beanFactory;
     private final ServiceConfig serviceConfig;
+    
+    @Autowired
+    private JobProfileService jobProfileService;
 
     public HelloController(BeanFactory beanFactory, ServiceConfig serviceConfig) {
         this.beanFactory = beanFactory;
@@ -48,7 +53,7 @@ public class HelloController {
     @ApiResponses(value = {
             @ApiResponse(code = 406, message = "Name parameter missing")
     })
-    public String helloWorld(
+    public List<JobProfileDetails> helloWorld(
             @RequestParam(name = "name", required = false) final String name,
             @ApiParam(
                     allowableValues = HELLO_NAME + "," + HOLA_NAME,
@@ -59,16 +64,17 @@ public class HelloController {
         LOGGER.debug("Processing name: " + name);
 
           LOGGER.debug("Evnvariable: " + enviornmentVariableCheck);
-
+          
 
         if (StringUtils.isEmpty(name)) {
-            return "NOT OK";
+           // return "NOT OK";
         }
-
+        
+        List<JobProfileDetails> listJobProfile = jobProfileService.getJobProfileDetails();
 
         LOGGER.debug("Evnvariable: " + enviornmentVariableCheck);
 
-        return enviornmentVariableCheck;
+        return listJobProfile;
     }
 
     @PostMapping(
