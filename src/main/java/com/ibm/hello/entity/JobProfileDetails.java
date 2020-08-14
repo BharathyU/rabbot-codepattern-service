@@ -25,26 +25,25 @@ public class JobProfileDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "datePosted")
+	@Column(name = "DATE_POSTED")
 	private LocalDate datePosted;
 
-	@Column(name = "datePosted")
+	@Column(name = "INTERVIEW_ID")
 	private String interviewId;
 
-	@Column(name = "datePosted")
+	@Column(name = "JOB_POSITION")
 	private String jobPosition;
 
-	@Column(name = "datePosted")
+	@Column(name = "JOB_LOCATION")
 	private String jobLocation;
 
-	@Column(name = "datePosted")
+	@Column(name = "EXPERIENCE_REQ")
 	private String experienceReq;
 	
-	@Column(name = "datePosted")
+	@Column(name = "COMPANY")
 	private String company;
 
-	@Column(name = "datePosted")
+	@Column(name = "STATUS")
 	private String status;
-
 
 }
