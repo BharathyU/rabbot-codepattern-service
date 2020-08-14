@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.ibm.hello.repository.JobProfileRepository;
 import com.ibm.hello.entity.JobProfileDetails;
+import java.util.List;
 
 @Service
 public class JobProfileService {

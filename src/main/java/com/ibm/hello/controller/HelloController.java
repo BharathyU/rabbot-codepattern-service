@@ -28,6 +28,9 @@ import com.ibm.hello.service.GreetingService;
 import com.ibm.hello.service.JobProfileService;
 import com.ibm.hello.service.ServiceName;
 import com.ibm.hello.entity.JobProfileDetails;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 public class HelloController {

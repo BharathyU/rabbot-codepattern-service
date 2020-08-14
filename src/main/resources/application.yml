@@ -1,6 +1,13 @@
 spring:
   application:
     name: "${IMAGE_NAME:template-spring-boot}"
+  datasource:
+    driverClassName: "com.mysql.jdbc.Driver"
+    url: "${RABBOT_DB_URL:jdbc:mysql://172.21.7.214:3306/rabootmysqldb}"
+    dbCreate: "update"
+    username: "${RABBOT_DB_USERNAME:rabbot}"
+    password: "${RABBOT_DB_PASSWORD:rabbot}"
+
 
 hello:
   pattern: "Hello there, %s!"
